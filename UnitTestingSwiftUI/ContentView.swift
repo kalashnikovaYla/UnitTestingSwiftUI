@@ -8,12 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @StateObject var viewModel: ViewModel
+    
+    init(isPremium: Bool) {
+        _viewModel = StateObject(wrappedValue: ViewModel(isPremium: isPremium))
+    }
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Text(viewModel.isPremium.description)
         }
         .padding()
     }
@@ -21,6 +25,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(isPremium: true)
     }
 }
